@@ -5,7 +5,7 @@ import logo from "../assets/svg/logo.svg"
 
 const Home = () => {
     return (
-        <Box textAlign="center" fontSize="xl">
+        <Box textAlign="center" fontSize="xl" style={{ minHeight: '100vh' }}>
             <Grid minH="80vh" p={3} alignItems='center'>
                 <VStack spacing={8}>
                     <Text>
@@ -23,12 +23,6 @@ const Home = () => {
                     </Text>
                 </VStack>
             </Grid>
-            <Flex>
-                <Center w='100%'>
-                    <Link as={ReactLink} to='/legal/terms-of-service' mr={2}>Terms of Service</Link>
-                    <Link as={ReactLink} to='/legal/privacy-policy' ml={2}>Privacy Policy</Link>
-                </Center>
-            </Flex>
         </Box>
     )
 }

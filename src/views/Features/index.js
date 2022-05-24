@@ -6,7 +6,7 @@ import developers from "../../assets/svg/developers.svg"
 
 const Features = () => {
     return (
-        <Container maxW='4xl' mt={3}>
+        <Container maxW='4xl' mt={3} style={{ minHeight: '100vh' }}>
             <Box textAlign="left">
                 <Grid p={3} alignItems='left'>
                     <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '25px' }}>Features</h1>
