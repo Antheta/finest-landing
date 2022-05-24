@@ -82,6 +82,7 @@ export default function WithSubnavigation() {
                     direction={'row'}
                     spacing={6}>
                     <Button
+                        display={{ base: 'none', md: 'inline-flex' }}
                         fontSize={'sm'}
                         fontWeight={400}
                         variant={'link'}
@@ -90,7 +91,7 @@ export default function WithSubnavigation() {
                         Account
                     </Button>
                     <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
+                        textAlign="center"
                         mr={2}
                         fontSize={'sm'}
                         fontWeight={600}
@@ -99,7 +100,7 @@ export default function WithSubnavigation() {
                         to={'/connect'}>
                         Connect
                     </Button>
-                    <ColorModeSwitcher style={{ marginLeft: '0px' }} justifySelf="flex-end" />
+                    <ColorModeSwitcher style={{ marginLeft: '10px' }} justifySelf="flex-end" />
                 </Stack>
             </Flex>
 
