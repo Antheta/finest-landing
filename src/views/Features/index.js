@@ -1,4 +1,4 @@
-import { Badge, Box, Container, Grid, GridItem, Img, Text } from "@chakra-ui/react"
+import { Badge, Box, Container, Grid, GridItem, Img, SimpleGrid, Text } from "@chakra-ui/react"
 
 import alerts from "../../assets/svg/alerts.svg"
 import responses from "../../assets/svg/responses.svg"
@@ -11,8 +11,12 @@ const Features = () => {
                 <Grid p={3} alignItems='left'>
                     <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '25px' }}>Features</h1>
                 </Grid>
-                <Grid templateColumns='repeat(3, 1fr)' gap={3} alignItems="center">
-                    <GridItem w='100%' lg={3} sm={12} borderRadius={6} p={2} pt={4} pb={4}>
+                <SimpleGrid 
+                    minChildWidth='180px'
+                    columns={3} 
+                    spacing={10}
+                >
+                    <Box w='100%' lg={3} sm={12} borderRadius={6}>
                         <Img 
                             src={alerts} 
                         />
@@ -23,8 +27,8 @@ const Features = () => {
                         <Text textAlign="center">
                             Setup your own alerts for the bot. The bot will then let you know on time.
                         </Text>
-                    </GridItem>
-                    <GridItem w='100%' lg={3} sm={12} borderRadius={6} p={2} pt={4} pb={4}>
+                    </Box>
+                    <Box w='100%' lg={3} sm={12} borderRadius={6}>
                         <Img 
                             src={responses} 
                         />
@@ -35,8 +39,8 @@ const Features = () => {
                         <Text textAlign="center">
                             Ask the bot for prices, supply, market cap and so on.
                         </Text>
-                    </GridItem>
-                    <GridItem w='100%' lg={3} sm={12} borderRadius={6} p={2} pt={4} pb={4}>
+                    </Box>
+                    <Box w='100%' lg={3} sm={12} borderRadius={6}>
                         <Img 
                             src={developers} 
                         />
@@ -47,8 +51,8 @@ const Features = () => {
                         <Text textAlign="center">
                             API available for developers, create your own custom integrations.
                         </Text>
-                    </GridItem>
-                </Grid>
+                    </Box>
+                </SimpleGrid>
             </Box>
         </Container>
     )
