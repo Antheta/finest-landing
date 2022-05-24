@@ -82,6 +82,14 @@ export default function WithSubnavigation() {
                     direction={'row'}
                     spacing={6}>
                     <Button
+                        fontSize={'sm'}
+                        fontWeight={400}
+                        variant={'link'}
+                        as={ReactLink}
+                        to={'/connect'}>
+                        Account
+                    </Button>
+                    <Button
                         display={{ base: 'none', md: 'inline-flex' }}
                         mr={2}
                         fontSize={'sm'}
