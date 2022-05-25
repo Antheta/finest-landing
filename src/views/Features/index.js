@@ -1,4 +1,4 @@
-import { Badge, Box, Container, Grid, GridItem, Image, Img, SimpleGrid, Text } from "@chakra-ui/react"
+import { Badge, Box, Container, Grid, Image, SimpleGrid, Text } from "@chakra-ui/react"
 
 import alerts from "../../assets/svg/alerts.svg"
 import responses from "../../assets/svg/responses.svg"

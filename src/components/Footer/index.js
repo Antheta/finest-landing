@@ -9,7 +9,7 @@ import {
     useColorModeValue,
     VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
 import { Link as ReactLink } from "react-router-dom"
 

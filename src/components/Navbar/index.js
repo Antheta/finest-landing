@@ -113,10 +113,6 @@ export default function WithSubnavigation() {
     );
 }
 
-const showDesktop = (isMobile) => {
-    
-}
-
 const DesktopNav = () => {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');

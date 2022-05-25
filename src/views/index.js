@@ -1,5 +1,4 @@
-import { VStack, Text, Link, Flex, Center, Box, Grid, Image } from "@chakra-ui/react";
-import { Link as ReactLink } from "react-router-dom"
+import { VStack, Text, Box, Grid, Image } from "@chakra-ui/react";
 
 import logo from "../assets/svg/logo.svg"
 
