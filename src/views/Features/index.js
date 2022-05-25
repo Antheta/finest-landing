@@ -24,8 +24,8 @@ const Features = () => {
                             Alerts
                             <Badge colorScheme='purple' ml={2}>In development</Badge>
                         </Text>
-                        <Text textAlign="center">
-                            Setup your own alerts for the bot. The bot will then let you know on time.
+                        <Text textAlign="center" mt={2}>
+                            Create your own alerts for the coins you wish to receive alerts about.
                         </Text>
                     </Box>
                     <Box w='100%' lg={3} sm={12} borderRadius={6}>
@@ -36,7 +36,7 @@ const Features = () => {
                             Responses
                             <Badge colorScheme='orange' ml={2}>Planned</Badge>
                         </Text>
-                        <Text textAlign="center">
+                        <Text textAlign="center" mt={2}>
                             Ask the bot for prices, supply, market cap and so on.
                         </Text>
                     </Box>
@@ -48,8 +48,8 @@ const Features = () => {
                             API
                             <Badge colorScheme='purple' ml={2}>In development</Badge>
                         </Text>
-                        <Text textAlign="center">
-                            API available for developers, create your own custom integrations.
+                        <Text textAlign="center" mt={2}>
+                            Create your own integrations through our API.
                         </Text>
                     </Box>
                 </SimpleGrid>

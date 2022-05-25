@@ -11,6 +11,7 @@ import {
     Heading,
     Text,
     useColorModeValue,
+    Badge,
 } from '@chakra-ui/react';
 
 import { Link as ReactLink } from "react-router-dom"
@@ -28,6 +29,7 @@ const SignIn = () => {
                     <Text fontSize={'lg'} color={'gray.600'}>
                         to enjoy all of our cool <Link as={ReactLink} to={'/features'} color={'blue.400'}>features</Link> ✌️
                     </Text>
+                    <Badge colorScheme={'orange'}>In development</Badge>
                 </Stack>
                 <Box
                     rounded={'lg'}

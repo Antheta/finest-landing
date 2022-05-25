@@ -9,6 +9,7 @@ import Privacy from "../views/Legal/privacy"
 import Tos from "../views/Legal/tos"
 
 import SignIn from "../views/Account/signin"
+import Account from "../views/Account"
 
 const Router = () => {
     return (
@@ -19,7 +20,8 @@ const Router = () => {
             <Route exact path="/legal/terms-of-service" element={<Tos />} />
             <Route exact path="/legal/privacy-policy" element={<Privacy />} />
 
-            <Route exact path="/account" element={<SignIn />} />
+            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/account" element={<Account />} />
         </Routes>
     )
 }
