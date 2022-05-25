@@ -19,16 +19,13 @@ import { Link as ReactLink } from "react-router-dom"
 const SignIn = () => {
     return (
         <Flex
-            minH={'90vh'}
+            minH={'93vh'}
             align={'center'}
             justify={'center'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-                    <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool <Link as={ReactLink} to={'/features'} color={'blue.400'}>features</Link> ✌️
-                    </Text>
                     <Badge colorScheme={'orange'}>In development</Badge>
                 </Stack>
                 <Box
@@ -54,7 +51,6 @@ const SignIn = () => {
                                 {/* <Link color={'blue.400'}>Forgot password?</Link> */}
                             </Stack>
                             <Button
-                                disabled
                                 bg={'blue.400'}
                                 color={'white'}
                                 _hover={{

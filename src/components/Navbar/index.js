@@ -87,7 +87,7 @@ export default function WithSubnavigation() {
                         fontWeight={400}
                         variant={'link'}
                         as={ReactLink}
-                        to={'/account'}>
+                        to={'/signin'}>
                         My Account
                     </Button>
                     <Button
