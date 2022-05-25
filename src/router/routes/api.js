@@ -17,6 +17,11 @@ const api = {
             byId: '/currencies/:id',
             bySlug: '/currencies/:slug'
         },
+        // ** teams
+        teams: {
+            index: '/teams',
+            byId: '/teams/:id'
+        },
         // ** Account
         account: {
             details: '/account',
