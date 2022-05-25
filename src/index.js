@@ -1,10 +1,10 @@
 import { ColorModeScript } from '@chakra-ui/react';
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useLayoutEffect } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
-import { BrowserRouter }  from 'react-router-dom';
+import { BrowserRouter, useLocation }  from 'react-router-dom';
 import Router from './router/Router';
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer';
@@ -17,15 +17,28 @@ import {
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
+const SmoothScrollTop = ({children}) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, [location.pathname]);
+  return children
+}
+
 root.render(
   <StrictMode>
     <ChakraProvider theme={theme}>
-      <BrowserRouter>  
-        <ColorModeScript />
-        <Navbar />
-        <Router />
-        <Footer />
-      </BrowserRouter>
+        <BrowserRouter>  
+          <SmoothScrollTop>
+            <ColorModeScript />
+            <Navbar />
+            <Router />
+            <Footer />
+          </SmoothScrollTop>
+        </BrowserRouter>
     </ChakraProvider>
   </StrictMode>
 );
