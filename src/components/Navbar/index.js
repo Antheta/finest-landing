@@ -87,15 +87,17 @@ export default function WithSubnavigation() {
                         fontWeight={400}
                         variant={'link'}
                         as={ReactLink}
-                        to={'/connect'}>
-                        Account
+                        to={'/account'}>
+                        My Account
                     </Button>
                     <Button
+                        display={{ base: 'none', md: 'inline-flex' }}
                         textAlign="center"
                         mr={2}
                         fontSize={'sm'}
                         fontWeight={600}
-                        variant='solid' colorScheme='gray'
+                        variant='solid' 
+                        colorScheme='gray'
                         as={ReactLink}
                         to={'/connect'}>
                         Connect
@@ -111,6 +113,10 @@ export default function WithSubnavigation() {
     );
 }
 
+const showDesktop = (isMobile) => {
+    
+}
+
 const DesktopNav = () => {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');
@@ -119,7 +125,11 @@ const DesktopNav = () => {
     return (
         <Stack direction={'row'} spacing={4} alignItems="center">
             {NAV_ITEMS.map((navItem) => (
-                <Box key={navItem.label}>
+                <Box key={navItem.label} 
+                display={navItem.mobile ? 
+                    { base: 'inline-flex', md: 'none' }
+                    : null
+                }>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
                         <PopoverTrigger>
                             <ChakraLink
@@ -147,7 +157,10 @@ const DesktopNav = () => {
                                 minW={'sm'}>
                                 <Stack>
                                     {navItem.children.map((child) => (
-                                        <DesktopSubNav key={child.label} {...child} />
+                                        <DesktopSubNav 
+                                            key={child.label} 
+                                            {...child} 
+                                        />
                                     ))}
                                 </Stack>
                             </PopoverContent>
@@ -201,7 +214,10 @@ const MobileNav = () => {
             p={4}
             display={{ md: 'none' }}>
             {NAV_ITEMS.map((navItem) => (
-                <MobileNavItem key={navItem.label} {...navItem} />
+                <MobileNavItem 
+                    key={navItem.label} 
+                    {...navItem} 
+                />
             ))}
         </Stack>
     );
@@ -266,6 +282,16 @@ const NAV_ITEMS = [
         label: 'Features',
         href: '/features',
     },
+    {
+        label: 'Connect',
+        href: '/connect',
+        mobile: true
+    },
+    {
+        label: 'My Account',
+        href: '/account',
+        mobile: true
+    }
     // {
     //   label: 'Features',
     //   children: [

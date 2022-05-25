@@ -35,7 +35,6 @@ const Connect = () => {
                                 </Center>
                             </Button>
                         </Stack>
-                        {/* <Badge colorScheme='orange'>In development</Badge> */}
                     </Center>
                 </Box>
             </Flex>

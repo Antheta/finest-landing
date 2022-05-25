@@ -1,4 +1,4 @@
-import { Badge, Box, Container, Grid, GridItem, Img, SimpleGrid, Text } from "@chakra-ui/react"
+import { Badge, Box, Container, Grid, GridItem, Image, Img, SimpleGrid, Text } from "@chakra-ui/react"
 
 import alerts from "../../assets/svg/alerts.svg"
 import responses from "../../assets/svg/responses.svg"
@@ -17,7 +17,7 @@ const Features = () => {
                     spacing={10}
                 >
                     <Box w='100%' lg={3} sm={12} borderRadius={6}>
-                        <Img 
+                        <Image 
                             src={alerts} 
                         />
                         <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>
@@ -29,7 +29,7 @@ const Features = () => {
                         </Text>
                     </Box>
                     <Box w='100%' lg={3} sm={12} borderRadius={6}>
-                        <Img 
+                        <Image 
                             src={responses} 
                         />
                         <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>
@@ -41,7 +41,7 @@ const Features = () => {
                         </Text>
                     </Box>
                     <Box w='100%' lg={3} sm={12} borderRadius={6}>
-                        <Img 
+                        <Image 
                             src={developers} 
                         />
                         <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>

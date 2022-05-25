@@ -13,10 +13,12 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 
-export default SignIn = () => {
+import { Link as ReactLink } from "react-router-dom"
+
+const SignIn = () => {
     return (
         <Flex
-            minH={'100vh'}
+            minH={'90vh'}
             align={'center'}
             justify={'center'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
@@ -24,7 +26,7 @@ export default SignIn = () => {
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
                     <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+                        to enjoy all of our cool <Link as={ReactLink} to={'/features'} color={'blue.400'}>features</Link> ✌️
                     </Text>
                 </Stack>
                 <Box
@@ -47,9 +49,10 @@ export default SignIn = () => {
                                 align={'start'}
                                 justify={'space-between'}>
                                 <Checkbox>Remember me</Checkbox>
-                                <Link color={'blue.400'}>Forgot password?</Link>
+                                {/* <Link color={'blue.400'}>Forgot password?</Link> */}
                             </Stack>
                             <Button
+                                disabled
                                 bg={'blue.400'}
                                 color={'white'}
                                 _hover={{
@@ -64,3 +67,5 @@ export default SignIn = () => {
         </Flex>
     );
 }
+
+export default SignIn
