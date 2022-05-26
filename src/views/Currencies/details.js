@@ -11,8 +11,9 @@ import {
     StatNumber,
     useColorModeValue,
     Spinner,
+    Button,
   } from '@chakra-ui/react';
-import { BsPerson } from 'react-icons/bs';
+import { BsBox, BsCapslockFill, BsCurrencyDollar, BsFillInboxFill, BsHandThumbsUp, BsHandThumbsUpFill, BsInboxFill, BsPerson } from 'react-icons/bs';
 import { FiServer } from 'react-icons/fi';
 import { GoLocation } from 'react-icons/go';
 
@@ -20,7 +21,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getCurrency } from './store';
 import { useDispatch, useSelector } from 'react-redux';
-// import Breadcrumb from '../../components/Breadcrumb';
+import Bc from '../../components/Breadcrumb';
 
 const StatsCard = (props) => {
     const { title, stat, icon } = props
@@ -71,14 +72,16 @@ const Currency = () => {
 
     useEffect(() => {
         setCurrency(slug)
-        dispatch(
-            getCurrency(slug)
-        ).then(() => {
-            setLoading(false)
-        })
+        if (!store.selected) {
+            dispatch(
+                getCurrency(slug)
+            ).then(() => {
+                setLoading(false)
+            })
+        }
 
         console.log(store)
-    }, [slug])
+    }, [store.selected])
 
     useEffect(() => {
         console.log(store)
@@ -86,13 +89,13 @@ const Currency = () => {
 
     return (
         <Container maxW='4xl' mt={2} style={{ minHeight: '100vh', marginBottom: '150px', marginTop: '50px' }}>
-            {/* <Breadcrumb 
+            <Bc 
                 items={breadcrumbItems}
                 currentPage={{
-                    title: {currency},
+                    title: currency,
                     href: `/currencies/${currency}`
                 }}
-            /> */}
+            />
             {loading ? (
                 <Box style={{ textAlign: 'center', fontWeight: '600', fontSize: '25px' }}>
                     <Spinner size='xl' />
@@ -101,7 +104,7 @@ const Currency = () => {
                 <Box textAlign="left">
                     <Grid alignItems='left'>
                         <chakra.h1
-                            textAlign={'center'}
+                            textAlign={'left'}
                             fontSize={'4xl'}
                             py={2}
                             fontWeight={'bold'}
@@ -109,28 +112,39 @@ const Currency = () => {
                         {currency}
                         </chakra.h1>
                     </Grid>
-                    <Text>
-                        <Text></Text>
-                    </Text>
-                    <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+                    <SimpleGrid columns={{ base: 1, md: 8 }} spacing={{ base: 1, lg: 2 }}>
+                        <Button colorScheme='blue' size='sm'>
+                            Follow
+                        </Button>
+                        <Button colorScheme='green' size='sm'>
+                            Set Alerts
+                        </Button>
+                    </SimpleGrid>
+                    <Box maxW="7xl" mx={'auto'} pt={5} >
                         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
                         <StatsCard
-                            title={'Users'}
+                            title={'Price'}
                             stat={'5,000'}
-                            icon={<BsPerson size={'3em'} />}
+                            icon={<BsCurrencyDollar size={'3em'} />}
                         />
                         <StatsCard
-                            title={'Servers'}
+                            title={'Market Cap'}
                             stat={'1,000'}
-                            icon={<FiServer size={'3em'} />}
+                            icon={<BsCapslockFill size={'3em'} />}
                         />
                         <StatsCard
-                            title={'Datacenters'}
+                            title={'Supply'}
                             stat={'7'}
-                            icon={<GoLocation size={'3em'} />}
+                            icon={<BsBox size={'3em'} />}
                         />
                         </SimpleGrid>
                     </Box>
+                    <Text fontSize={20} marginTop={'30px'}>
+                        Details
+                    </Text>
+                    <Text>
+                        ...info...
+                    </Text>
                 </Box>
             )}
         </Container>

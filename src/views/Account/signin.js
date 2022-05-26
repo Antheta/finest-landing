@@ -31,7 +31,7 @@ const SignIn = () => {
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-                    <Badge colorScheme={'orange'}>In development</Badge>
+                    <Badge colorScheme={'purple'}>In development</Badge>
                 </Stack>
                 <Box
                     rounded={'lg'}

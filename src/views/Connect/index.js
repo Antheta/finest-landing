@@ -16,7 +16,7 @@ const Connect = () => {
                             <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '25px' }}>Connect</h1>
                             <Box mt={5} textAlign="center">
                                 Choose where you want to add our bot. <br />
-                                <Badge colorScheme={'orange'}>In development</Badge>
+                                <Badge colorScheme={'purple'}>In development</Badge>
                             </Box>
                         </Grid>
                         <Center h='150px'>

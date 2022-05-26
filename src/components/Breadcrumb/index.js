@@ -1,18 +1,20 @@
-import { BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 import { Link as ReactLink } from "react-router-dom"
 
-const Breadcrumb = (items, currentPage) => {
+const Bc = ({ items, currentPage }) => {
     return (
         <Breadcrumb>
             <BreadcrumbItem>
                 <BreadcrumbLink as={ReactLink} to='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
 
-            {items.length ? (
+            {items ? (
                 items.map((item) => {
-                    <BreadcrumbItem>
-                    <BreadcrumbLink as={ReactLink} to={`${item.href}`}>{item.title}</BreadcrumbLink>
-                    </BreadcrumbItem>
+                    return (
+                        <BreadcrumbItem>
+                            <BreadcrumbLink as={ReactLink} to={`${item.href}`}>{item.title}</BreadcrumbLink>
+                        </BreadcrumbItem>
+                    )
                 })
             ) : null}
 
@@ -23,4 +25,4 @@ const Breadcrumb = (items, currentPage) => {
     )
 }
 
-export default Breadcrumb
+export default Bc
