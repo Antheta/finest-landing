@@ -8,6 +8,9 @@ import Connect from "../views/Connect"
 import Privacy from "../views/Legal/privacy"
 import Tos from "../views/Legal/tos"
 
+import Currencies from "../views/Currencies"
+import Currency from "../views/Currencies/details"
+
 import SignIn from "../views/Account/signin"
 import Account from "../views/Account"
 
@@ -19,6 +22,9 @@ const Router = () => {
             <Route exact path="/connect" element={<Connect />} />
             <Route exact path="/legal/terms-of-service" element={<Tos />} />
             <Route exact path="/legal/privacy-policy" element={<Privacy />} />
+
+            <Route path="/currencies" element={<Currencies />} />
+            <Route path="/currencies/:slug" element={<Currency />} />
 
             <Route exact path="/signin" element={<SignIn />} />
             <Route exact path="/account" element={<Account />} />

@@ -3,12 +3,9 @@ import { Fragment } from "react";
 
 import { SiMessenger, SiTelegram, SiSlack } from 'react-icons/si';
 
-import Newsletter from './newsletter'
-
 const Connect = () => {
     return (
         <Fragment>
-            <Newsletter />
             <Container maxW='4xl' minH='100vh'>
                 <Flex
                     minH={'60vh'}

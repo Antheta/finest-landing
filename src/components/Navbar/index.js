@@ -279,6 +279,10 @@ const NAV_ITEMS = [
         href: '/features',
     },
     {
+        label: 'Currencies',
+        href: '/currencies',
+    },
+    {
         label: 'Connect',
         href: '/connect',
         mobile: true

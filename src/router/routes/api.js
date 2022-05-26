@@ -1,10 +1,10 @@
 // ** API Routes
 
 // ** to use environment variables
-require('dotenv').config()
+// require('dotenv').config()
 
 const api = {
-    endpoint: `${process.env.API_ENDPOINT}/api`,
+    endpoint: `${process.env.REACT_APP_API_ENDPOINT}/api`,
     routes: {
         // ** Alerts
         alerts: {

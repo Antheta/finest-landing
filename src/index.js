@@ -4,6 +4,10 @@ import * as ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
+// ** Redux
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+
 import { BrowserRouter, useLocation }  from 'react-router-dom';
 import Router from './router/Router';
 import Navbar from './components/Navbar/index';
@@ -30,15 +34,17 @@ const SmoothScrollTop = ({children}) => {
 
 root.render(
   <StrictMode>
-    <ChakraProvider theme={theme}>
-        <BrowserRouter>  
-          <SmoothScrollTop>
-            <ColorModeScript />
-            <Navbar />
-            <Router />
-            <Footer />
-          </SmoothScrollTop>
-        </BrowserRouter>
+    <ChakraProvider theme={theme} store={store}>
+      <Provider store={store}>
+          <BrowserRouter>  
+            <SmoothScrollTop>
+              <ColorModeScript />
+              <Navbar />
+              <Router />
+              <Footer />
+            </SmoothScrollTop>
+          </BrowserRouter>
+      </Provider>
     </ChakraProvider>
   </StrictMode>
 );
