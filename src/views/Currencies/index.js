@@ -143,7 +143,7 @@ const Currencies = () => {
                         </InputGroup>
                         <Box textAlign="left" spacing={0} mx={'auto'} py={0} px={0} style={{ marginBottom: '45px' }}>
                             <Grid p={2} alignItems='left' mb={5}>
-                                <Box mt={3} textAlign="center" style={{ maxWidth: '100%', overflowY: 'scroll' }}>
+                                <Box mt={3} textAlign="center" style={{ maxWidth: '100%', overflowX: 'auto' }}>
                                     {currenciesTable()}
                                 </Box>
                             </Grid>
