@@ -31,18 +31,6 @@ const Features = () => {
                     </Box>
                     <Box w='100%' lg={3} sm={12} borderRadius={6}>
                         <Image 
-                            src={responses} 
-                        />
-                        <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>
-                            Responses
-                            <Badge colorScheme='orange' ml={2}>Planned</Badge>
-                        </Text>
-                        <Text textAlign="center" mt={2}>
-                            Ask the bot for prices, supply, market cap and so on.
-                        </Text>
-                    </Box>
-                    <Box w='100%' lg={3} sm={12} borderRadius={6}>
-                        <Image 
                             src={developers} 
                         />
                         <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>
@@ -51,6 +39,18 @@ const Features = () => {
                         </Text>
                         <Text textAlign="center" mt={2}>
                             Create your own integrations through our API.
+                        </Text>
+                    </Box>
+                    <Box w='100%' lg={3} sm={12} borderRadius={6}>
+                        <Image 
+                            src={responses} 
+                        />
+                        <Text textAlign="center" style={{ fontSize: '20px', fontWeight: '600' }}>
+                            BOT
+                            <Badge colorScheme='orange' ml={2}>Planned</Badge>
+                        </Text>
+                        <Text textAlign="center" mt={2}>
+                            Add our bot to your own chat groups so that everyone is up to date.
                         </Text>
                     </Box>
                 </SimpleGrid>

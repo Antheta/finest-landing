@@ -13,6 +13,7 @@ import {
     TabPanels,
     TabPanel,
     Flex,
+    Badge,
 } from '@chakra-ui/react'
 import { BsBell, BsBellFill } from 'react-icons/bs'
 
@@ -51,22 +52,10 @@ const Notifications = () => {
                             </TabList>
                             <TabPanels>
                                 <TabPanel>
-                                    {/* You can add your content here. */}
-                                    --- VISIBLE TO AUTHENTICATED USERS ---
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Elementum curabitur vitae nunc sed velit dignissim sodales ut
-                                    eu. Mauris nunc congue nisi vitae suscipit tellus mauris a
-                                    diam. Eros in cursus turpis massa tincidunt.
+                                    <Badge w={"100%"} textAlign="center" colorScheme="orange">COMING SOON</Badge>
                                 </TabPanel>
                                 <TabPanel>
-                                    {/* You can add your content here. */}
-                                    --- VISIBLE TO AUTHENTICATED USERS ---
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Elementum curabitur vitae nunc sed velit dignissim sodales ut
-                                    eu. Mauris nunc congue nisi vitae suscipit tellus mauris a
-                                    diam. Eros in cursus turpis massa tincidunt.
+                                    <Badge w={"100%"} textAlign="center" colorScheme="orange">COMING SOON</Badge>
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>

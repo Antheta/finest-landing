@@ -11,7 +11,7 @@ import Tos from "../views/Legal/tos"
 import Currencies from "../views/Currencies"
 import Currency from "../views/Currencies/details"
 
-import SignIn from "../views/Account/signin"
+import Login from "../views/Account/login"
 import Account from "../views/Account"
 
 const Router = () => {
@@ -26,7 +26,7 @@ const Router = () => {
             <Route path="/currencies" element={<Currencies />} />
             <Route path="/currencies/:slug" element={<Currency />} />
 
-            <Route exact path="/signin" element={<SignIn />} />
+            <Route exact path="/login" element={<Login />} />
             <Route exact path="/account" element={<Account />} />
         </Routes>
     )

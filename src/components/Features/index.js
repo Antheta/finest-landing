@@ -30,21 +30,21 @@ export default function FeaturesBox() {
                     icon={<Icon as={FcGenealogy} w={10} h={10} />}
                     title={'The Gateway'}
                     text={
-                        'Tap into our gateway that offers ...'
+                        'Tap into our gateway that offers you multiple different notification channels!'
                     }
                 />
                 <Feature
                     icon={<Icon as={FcLink} w={10} h={10} />}
                     title={'Webhook'}
                     text={
-                        'Add your own webhook address where you want us to send data to ...'
+                        'Add your own webhook address where you want us to send data to.'
                     }
                 />
                 <Feature
                     icon={<Icon as={FcCommandLine} w={10} h={10} />}
                     title={'Integrations'}
                     text={
-                        'Use our API to create new alerts ...'
+                        'Use our API to connect with us and create new alerts via your application.'
                     }
                 />
             </SimpleGrid>

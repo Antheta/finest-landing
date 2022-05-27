@@ -16,6 +16,8 @@ import Router from './router/Router';
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer';
 
+import { DAppProvider } from "@usedapp/core";
+
 import {
   ChakraProvider,
   theme,
@@ -39,6 +41,7 @@ root.render(
   <StrictMode>
     <ChakraProvider theme={theme} store={store}>
       <Provider store={store}>
+        <DAppProvider config={{}}>
           <BrowserRouter>  
             <SmoothScrollTop>
               <ColorModeScript />
@@ -47,6 +50,7 @@ root.render(
               <Footer />
             </SmoothScrollTop>
           </BrowserRouter>
+        </DAppProvider>
       </Provider>
     </ChakraProvider>
   </StrictMode>

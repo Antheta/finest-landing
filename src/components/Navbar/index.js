@@ -15,6 +15,7 @@ import {
     useBreakpointValue,
     useDisclosure,
     Image,
+    Circle,
 } from '@chakra-ui/react';
 
 import { Link as ReactLink } from "react-router-dom"
@@ -30,9 +31,21 @@ import {
 import logo from "../../assets/svg/logo.svg"
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import Notifications from '../Notifications';
+import WalletModal from '../WalletModal';
+import { useState } from 'react';
+
+import { useEthers, useEtherBalance } from "@usedapp/core";
+import { formatEther } from "@ethersproject/units";
+import Identicon from '../Identicon';
 
 export default function WithSubnavigation() {
+    const { activateBrowserWallet, account } = useEthers();
+    const etherBalance = useEtherBalance(account);
+
     const { isOpen, onToggle } = useDisclosure();
+
+    const [modalOpen, setModalOpen] = useState()
+    const handleWalletModal = () => setModalOpen(!modalOpen)
 
     return (
         <Box>
@@ -82,16 +95,20 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}>
-                    <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        as={ReactLink}
-                        to={'/signin'}>
-                        My Account
-                    </Button>
-                    {Notifications()}
+                    {account ? (
+                        <>
+                            <Button
+                                display={{ base: 'none', md: 'inline-flex' }}
+                                fontSize={'sm'}
+                                fontWeight={400}
+                                variant={'link'}
+                                as={ReactLink}
+                                to={'/alerts'}>
+                                My Alerts
+                            </Button>
+                            {Notifications()}
+                        </>
+                    ) : null}
                     <Button
                         display={{ base: 'none', md: 'inline-flex' }}
                         textAlign="center"
@@ -101,9 +118,22 @@ export default function WithSubnavigation() {
                         fontWeight={600}
                         variant='solid' 
                         colorScheme='gray'
-                        as={ReactLink}
-                        to={'/connect'}>
-                        Connect
+                        onClick={() => {
+                            handleWalletModal()
+                        }}
+                    >
+                        {account ? (
+                            <>
+                                <Circle size='10px' bg='green.400' mr={2} color='white' />
+                                {`${account.slice(0, 6)}...${account.slice(
+                                    account.length - 4,
+                                    account.length
+                                )}`}
+                                <Identicon style={{ marginLeft: '7px' }} />
+                            </>
+                        ) : (
+                            'Connect'
+                        )}
                     </Button>
                     <ColorModeSwitcher style={{ marginLeft: '10px' }} justifySelf="flex-end" />
                 </Stack>
@@ -112,6 +142,7 @@ export default function WithSubnavigation() {
             <Collapse in={isOpen} animateOpacity>
                 <MobileNav />
             </Collapse>
+            <WalletModal isOpen={modalOpen} handleModal={handleWalletModal} />
         </Box>
     );
 }
@@ -292,11 +323,6 @@ const NAV_ITEMS = [
     {
         label: 'Connect',
         href: '/connect',
-        mobile: true
-    },
-    {
-        label: 'My Account',
-        href: '/account',
         mobile: true
     }
     // {

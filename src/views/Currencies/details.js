@@ -42,6 +42,34 @@ import { FcComboChart, FcInfo } from 'react-icons/fc';
 
 const numeral = require('numeral');
 
+const Charts = ({ fiat, symbol }) => {
+    const color = useColorModeValue('dark', 'light')
+    return (
+        <>
+            <AdvancedRealTimeChart 
+                symbol={symbol + fiat}
+                width="100%"
+                height="450px"
+                allow_symbol_change={false}
+                hide_side_toolbar={true}
+                details={false}
+                isTransparent
+                theme={color === "dark" ? 'light' : 'dark'}
+            >
+            </AdvancedRealTimeChart>
+            {fiat ? (
+                <TechnicalAnalysis 
+                    symbol={symbol + fiat}
+                    width="100%"
+                    isTransparent
+                    colorTheme={color === "dark" ? 'light' : 'dark'}
+                >
+                </TechnicalAnalysis>
+            ) : null}
+        </>
+    )
+}
+
 const StatsCard = (props) => {
     const { title, stat, icon, change } = props
     return (
@@ -84,12 +112,13 @@ const breadcrumbItems = [
 
 
 const Currency = () => {
-    const color = useColorModeValue('dark', 'light');
+    const color = useColorModeValue('dark', 'light')
     const dispatch = useDispatch()
     const store = useSelector(state => state.currencies)
 
     const [currency, setCurrency] = useState("")
     const [fiat, setFiat] = useState("USD")
+    const [info, setInfo] = useState({})
     const [loading, setLoading] = useState(true)
 
     const [state, setState] = useState(
@@ -103,8 +132,12 @@ const Currency = () => {
         if (store.selected?.slug !== currency) {
             dispatch(
                 getCurrency(slug)
-            ).then(() => {
+            ).then((data) => {
                 setLoading(false)
+
+                if (data.payload.data) {
+                    setInfo(JSON.parse(data.payload.data))
+                }
             })
 
         }
@@ -175,7 +208,7 @@ const Currency = () => {
                         <StatsCard
                             title={'Price'}
                             stat={ 
-                                store.selected?.quotes[0]?.price <= 0.01 ? (
+                                store.selected?.quotes[0]?.price <= 0.05 ? (
                                     numeral(store.selected?.quotes[0]?.price).format('0.00000a')
                                 ) : (
                                     numeral(store.selected?.quotes[0]?.price).format('0.00a')
@@ -314,22 +347,10 @@ const Currency = () => {
                                         <option value={`USD`} defaultChecked={true}>U.S Dollar - {store.selected?.symbol + '/USD'}</option>
                                         <option value={`EUR`}>EURO - {store.selected?.symbol + '/EUR'}</option>
                                     </Select>
-                                    <AdvancedRealTimeChart 
-                                        symbol={store.selected?.symbol + fiat}
-                                        width="100%"
-                                        height="450px"
-                                        allow_symbol_change={false}
-                                        hide_side_toolbar={true}
-                                        details={false}
-                                        theme={color === "dark" ? 'light' : 'dark'}
+                                    <Charts 
+                                        symbol={store.selected?.symbol} 
+                                        fiat={fiat} 
                                     />
-                                    {fiat ? (
-                                        <TechnicalAnalysis 
-                                            symbol={store.selected?.symbol + fiat}
-                                            width="100%"
-                                            colorTheme={color === "dark" ? 'light' : 'dark'}
-                                        />
-                                    ) : null}
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>

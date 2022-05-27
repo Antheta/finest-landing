@@ -9,9 +9,9 @@ import { getCurrencies } from "./store";
 import { debounce } from 'lodash'
 import { Link as ReactLink } from "react-router-dom";
 
-import { numFormatter } from "../../utility/Utils";
 
 import CurrencyTableButton from "../../components/CurrencyTableButton"; 
+const numeral = require('numeral');
 
 const Currencies = () => {
     const dispatch = useDispatch()
@@ -55,7 +55,7 @@ const Currencies = () => {
                                             <Text fontSize={10}>{currency.symbol}</Text>
                                         </Td>
                                         <Td>
-                                            {numFormatter(currency.circulatingSupply)}
+                                            {numeral(currency.circulatingSupply).format('0.00a')}
                                         </Td>
                                         <Td>
                                             {CurrencyTableButton()}

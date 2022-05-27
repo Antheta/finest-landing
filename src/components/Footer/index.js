@@ -9,7 +9,7 @@ import {
     useColorModeValue,
     VisuallyHidden,
 } from '@chakra-ui/react'
-import { FaInstagram, FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 import moment from 'moment'
 
@@ -94,6 +94,9 @@ export default function SmallCentered() {
                         </SocialButton>
                         <SocialButton label={'Instagram'} href={'https://www.instagram.com/anthetacom/'}>
                             <FaInstagram />
+                        </SocialButton>
+                        <SocialButton label={'Github'} href={'https://github.com/Antheta'}>
+                            <FaGithub />
                         </SocialButton>
                     </Stack>
                 </Container>
