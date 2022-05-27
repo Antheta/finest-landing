@@ -174,7 +174,13 @@ const Currency = () => {
                         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
                         <StatsCard
                             title={'Price'}
-                            stat={numeral(store.selected?.quotes[0]?.price).format('0.0a')}
+                            stat={ 
+                                store.selected?.quotes[0]?.price <= 0.01 ? (
+                                    numeral(store.selected?.quotes[0]?.price).format('0.00000a')
+                                ) : (
+                                    numeral(store.selected?.quotes[0]?.price).format('0.00a')
+                                )                                
+                            }
                             change={store.selected?.quotes[0]?.percentChange1h}
                             icon={<BsCurrencyDollar size={'3em'} />}
                         />
