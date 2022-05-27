@@ -150,7 +150,7 @@ const Currency = () => {
                         </chakra.h1>
                         {store.selected?.lastUpdated ?
                             <Text size={'sm'} margin={{ base: 2, lg: 0 }} textAlign={{ base: 'center', md: 'right' }} textColor={'lightgray'} alignSelf={"center"} fontSize={10}>
-                                Last updated: {formatDateTime(store.selected?.lastUpdated)}
+                                Last updated: {formatDateTime(store.selected?.quotes[0]?.lastUpdated ? store.selected?.quotes[0]?.lastUpdated : store.selected?.lastUpdated)}
                             </Text>
                         : null}
                     </SimpleGrid>
