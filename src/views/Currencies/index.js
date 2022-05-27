@@ -1,5 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Badge, Box, Button, Container, Flex, Grid, Input, InputGroup, InputLeftAddon, InputLeftElement, InputRightElement, Link, Spinner, Stack, Table, TableContainer, Td, Text, Th, Thead, Tr } from "@chakra-ui/react"
+import { Badge, Box, Button, Container, Flex, Grid, Input, InputGroup, InputLeftAddon, InputLeftElement, InputRightElement, Link, Spinner, Stack, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react"
 import { Fragment, useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,10 @@ import { getCurrencies } from "./store";
 
 import { debounce } from 'lodash'
 import { Link as ReactLink } from "react-router-dom";
+
+import { numFormatter } from "../../utility/Utils";
+
+import CurrencyTableButton from "../../components/CurrencyTableButton"; 
 
 const Currencies = () => {
     const dispatch = useDispatch()
@@ -20,18 +24,6 @@ const Currencies = () => {
         currenciesTable()
     }, [store.data])
 
-    const numFormatter = (num) => {
-        if(num > 999 && num < 1000000) {
-            return (num/1000).toFixed(1) + 'K' // convert to K for number from > 1000 < 1 million 
-        }else if(num > 1000000) {
-            return (num/1000000).toFixed(2) + 'M' // convert to M for number from > 1 million 
-        }else if(num > 1000000) {
-            return (num/10000000).toFixed(1) + 'B' // convert to M for number from > 1 million 
-        }else if(num < 900) {
-            return num // if value < 1000, nothing to do
-        }
-    }
-
     const currenciesTable = () => {
         const currencies = store.data
         if (currencies.length) {
@@ -42,34 +34,36 @@ const Currencies = () => {
                     </Text>
                     <Table size="sm" variant='striped' colorScheme='gray'>
                         <Thead>
-                            <Th fontSize={18}>#</Th>
-                            <Th fontSize={18}>Name</Th>
-                            <Th fontSize={18}>Circulating Supply</Th>
-                            <Th fontSize={18}></Th>
+                            <Tr>
+                                <Th fontSize={18}>#</Th>
+                                <Th fontSize={18}>Name</Th>
+                                <Th fontSize={18}>Circulating Supply</Th>
+                                <Th fontSize={18}></Th>
+                            </Tr>
                         </Thead>
-                        {currencies.map((currency, i) => {
-                            return (
-                                <Tr key={i}>
-                                    <Td>
-                                        <Badge color={'gray'}>{currency.cmcRank}</Badge>
-                                    </Td>
-                                    <Td>
-                                        <Link fontSize={15} as={ReactLink} to={`/currencies/${currency.slug}`}>
-                                            {currency.name}
-                                        </Link>
-                                        <Text fontSize={10}>{currency.symbol}</Text>
-                                    </Td>
-                                    <Td>
-                                        {numFormatter(currency.circulatingSupply)}
-                                    </Td>
-                                    <Td>
-                                        <Button colorScheme='blue' size='xs' disabled title="Work in progress">
-                                            Follow
-                                        </Button>
-                                    </Td>
-                                </Tr>
-                            )
-                        })}
+                        <Tbody>
+                            {currencies.map((currency, i) => {
+                                return (
+                                    <Tr key={i}>
+                                        <Td>
+                                            <Badge color={'gray'}>{currency.cmcRank}</Badge>
+                                        </Td>
+                                        <Td>
+                                            <Link fontSize={15} as={ReactLink} to={`/currencies/${currency.slug}`}>
+                                                {currency.name}
+                                            </Link>
+                                            <Text fontSize={10}>{currency.symbol}</Text>
+                                        </Td>
+                                        <Td>
+                                            {numFormatter(currency.circulatingSupply)}
+                                        </Td>
+                                        <Td>
+                                            {CurrencyTableButton()}
+                                        </Td>
+                                    </Tr>
+                                )
+                            })}
+                        </Tbody>
                     </Table>
                 </TableContainer>
             )
@@ -108,8 +102,11 @@ const Currencies = () => {
     return (
         <Fragment>
             <Container maxW='2xl' minH='100vh'>
+                <Grid p={3} marginTop="35px" alignItems='left'>
+                    <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '35px' }}>Currencies</h1>
+                </Grid>
                 <Flex
-                    style={{ marginTop: '80px', marginBottom: '0px' }}>
+                    style={{ marginTop: '40px', marginBottom: '0px' }}>
                     <Stack minW="100%">
                         <InputGroup
                             style={{  marginBottom: '10px' }}

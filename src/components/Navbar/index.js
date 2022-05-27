@@ -29,6 +29,7 @@ import {
 
 import logo from "../../assets/svg/logo.svg"
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
+import Notifications from '../Notifications';
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
@@ -90,10 +91,12 @@ export default function WithSubnavigation() {
                         to={'/signin'}>
                         My Account
                     </Button>
+                    {Notifications()}
                     <Button
                         display={{ base: 'none', md: 'inline-flex' }}
                         textAlign="center"
                         mr={2}
+                        style={{ marginLeft: '10px' }}
                         fontSize={'sm'}
                         fontWeight={600}
                         variant='solid' 
@@ -281,6 +284,10 @@ const NAV_ITEMS = [
     {
         label: 'Currencies',
         href: '/currencies',
+    },
+    {
+        label: 'Gateway',
+        href: '/gateway',
     },
     {
         label: 'Connect',

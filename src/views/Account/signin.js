@@ -94,14 +94,6 @@ const SignIn = () => {
                                     ? 'Oh no an error occured! 😢 Please try again later.'
                                     : "Sign in to continue."}
                             </Text>
-                            {/* <Button
-                                bg={'blue.400'}
-                                color={'white'}
-                                _hover={{
-                                    bg: 'blue.500',
-                                }}>
-                                Sign in
-                            </Button> */}
                         </Stack>
                     </Stack>
                 </Box>

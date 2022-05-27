@@ -1,15 +1,16 @@
-import { Badge, Box, Container, Grid, Image, SimpleGrid, Text } from "@chakra-ui/react"
+import { Badge, Box, Container, Grid, Icon, Image, SimpleGrid, Text } from "@chakra-ui/react"
 
 import alerts from "../../assets/svg/alerts.svg"
 import responses from "../../assets/svg/responses.svg"
 import developers from "../../assets/svg/developers.svg"
+import { FcInfo } from "react-icons/fc"
 
 const Features = () => {
     return (
         <Container maxW='4xl' mt={3} style={{ minHeight: '100vh' }}>
             <Box textAlign="left">
                 <Grid p={3} alignItems='left'>
-                    <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '25px' }}>Features</h1>
+                    <h1 style={{ textAlign: 'center', fontWeight: '600', fontSize: '35px' }}>Features</h1>
                 </Grid>
                 <SimpleGrid 
                     minChildWidth='180px'

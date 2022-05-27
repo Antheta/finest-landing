@@ -1,0 +1,22 @@
+.gradient-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    text-transform: uppercase;
+    color: transparent;
+    background: linear-gradient(to left, #1e5799, #2ce0bf, #76dd2c, #dba62b, #e02cbf, #1e5799);
+    background-size: 1000px 100%;
+    animation: bg 15s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+@keyframes bg {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: 2200px;
+    }
+}

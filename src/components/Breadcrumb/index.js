@@ -9,9 +9,9 @@ const Bc = ({ items, currentPage }) => {
             </BreadcrumbItem>
 
             {items ? (
-                items.map((item) => {
+                items.map((item, i) => {
                     return (
-                        <BreadcrumbItem>
+                        <BreadcrumbItem key={i}>
                             <BreadcrumbLink as={ReactLink} to={`${item.href}`}>{item.title}</BreadcrumbLink>
                         </BreadcrumbItem>
                     )

@@ -8,8 +8,10 @@ import {
     Text,
     useColorModeValue,
     VisuallyHidden,
-} from '@chakra-ui/react';
-import { FaInstagram, FaTwitter } from 'react-icons/fa';
+} from '@chakra-ui/react'
+import { FaInstagram, FaTwitter } from 'react-icons/fa'
+
+import moment from 'moment'
 
 import { Link as ReactLink } from "react-router-dom"
 
@@ -21,7 +23,7 @@ const Logo = () => {
             boxSize='85px'
             objectFit='cover'
             src={logo}
-            alt="FINEST PROTOCOL"
+            alt="Finest Protocol"
         />
     )
 }
@@ -85,7 +87,7 @@ export default function SmallCentered() {
                     spacing={4}
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2022 FINEST.</Text>
+                    <Text>{moment().format('YYYY')} © Finest Protocol.</Text>
                     <Stack direction={'row'} spacing={6}>
                         <SocialButton label={'Twitter'} href={'https://twitter.com/AnthetaApp'}>
                             <FaTwitter />

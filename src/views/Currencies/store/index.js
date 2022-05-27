@@ -23,11 +23,7 @@ export const getCurrency = createAsyncThunk('currencies/getCurrency', async slug
   const response = await axios.get(
     `${api.endpoint + api.routes.currencies.index}/${slug}`,
   )
-  return {
-    slug,
-    data: response.data.data,
-    total: response.data.info.total
-  }
+  return response.data
 })
 
 export const currencySlice = createSlice({
@@ -48,7 +44,7 @@ export const currencySlice = createSlice({
         state.total = action.payload.total
       })
       .addCase(getCurrency.fulfilled, (state, action) => {
-        state.selected = action.payload.data
+        state.selected = action.payload
       })
   }
 })
