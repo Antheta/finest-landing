@@ -78,6 +78,7 @@ export default function WithSubnavigation() {
                         fontFamily={'heading'}
                         color={useColorModeValue('gray.800', 'white')}>
                         <Image
+                            display={{ base: 'none', md: 'inline-flex' }}
                             boxSize='45px'
                             objectFit='cover'
                             src={logo}
@@ -110,7 +111,7 @@ export default function WithSubnavigation() {
                         </>
                     ) : null}
                     <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
+                        // display={{ md: 'inline-flex' }}
                         textAlign="center"
                         mr={2}
                         style={{ marginLeft: '10px' }}
