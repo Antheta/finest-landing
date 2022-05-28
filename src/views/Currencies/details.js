@@ -39,6 +39,9 @@ import { AdvancedRealTimeChart, TechnicalAnalysis } from "react-ts-tradingview-w
 import { formatDateTime, utcToLocal } from '../../utility/Utils'
 import { CheckIcon, Icon } from '@chakra-ui/icons';
 import { FcComboChart, FcInfo } from 'react-icons/fc';
+import moment from 'moment';
+import Change from '../../components/Currencies/Tables/Change';
+import CurrencyTable from '../../components/Currencies/Tables/CurrencyTable';
 
 const numeral = require('numeral');
 
@@ -77,8 +80,8 @@ const StatsCard = (props) => {
             px={{ base: 2, md: 4 }}
             py={'5'}
             shadow={'xl'}
-            border={'1px solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.200')}
+            border={'0.2px solid'}
+            borderColor={useColorModeValue('gray.400', 'gray.400')}
             rounded={'lg'}>
             <Flex justifyContent={'space-between'}>
             <Box pl={{ base: 2, md: 4 }}>
@@ -169,7 +172,6 @@ const Currency = () => {
             ) : (
                 <Box textAlign="left">
                     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 1, lg: 2 }}>
-
                         <chakra.h1
                             textAlign={'left'}
                             fontSize={'4xl'}
@@ -209,9 +211,9 @@ const Currency = () => {
                             title={'Price'}
                             stat={ 
                                 store.selected?.quotes[0]?.price <= 0.05 ? (
-                                    numeral(store.selected?.quotes[0]?.price).format('0.00000a')
+                                    `$${numeral(store.selected?.quotes[0]?.price).format('0.00000a')}`
                                 ) : (
-                                    numeral(store.selected?.quotes[0]?.price).format('0.00a')
+                                    `$${numeral(store.selected?.quotes[0]?.price).format('0.00a')}`
                                 )                                
                             }
                             change={store.selected?.quotes[0]?.percentChange1h}
@@ -231,7 +233,7 @@ const Currency = () => {
                     </Box>
                     <br />
                     <Box mt={5}>
-                        <Tabs isFitted  marginTop={'20px'}>
+                        <Tabs isFitted  marginTop={'10px'}>
                             <TabList mb='1em' marginTop={'20px'}>
                                 <Tab>
                                     <Icon as={FcInfo} w={5} h={5} mr={1} /> Information
@@ -242,91 +244,78 @@ const Currency = () => {
                             </TabList>
                             <TabPanels>
                                 <TabPanel>
-                                    <Text fontSize={20} marginTop={'30px'} marginBottom={'15px'}>
-                                        Supply
-                                    </Text>
-                                    <TableContainer maxWidth={'100%'} maxW="100%">
-                                        <Table size="sm" variant='striped' colorScheme='gray'>
-                                            <Thead>
-                                                <Tr>
-                                                    <Th>Attribute</Th>
-                                                    <Th>Value</Th>
-                                                </Tr>
-                                            </Thead>
-                                            <Tbody>
-                                                <Tr>
-                                                    <Td>Total supply</Td>
-                                                    <Td>{numeral(store.selected?.totalSupply).format('0.00a')}</Td>
-                                                </Tr>
-                                                <Tr>
-                                                    <Td>Circulating supply</Td>
-                                                    <Td>{numeral(store.selected?.circulatingSupply).format('0.00a')}</Td>
-                                                </Tr>
-                                            </Tbody>
-                                        </Table>
-                                    </TableContainer>
+                                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 1, lg: 2 }}>
+                                        <Change 
+                                            values={{ 
+                                                percentChange1h: store.selected?.quotes[0].percentChange1h,
+                                                percentChange24h: store.selected?.quotes[0].percentChange24h,
+                                                percentChange7d: store.selected?.quotes[0].percentChange7d,
+                                                percentChange30d: store.selected?.quotes[0].percentChange30d,
+                                                percentChange60d: store.selected?.quotes[0].percentChange60d,
+                                                percentChange90d: store.selected?.quotes[0].percentChange90d,
+                                                ytdPriceChangePercentage: store.selected?.quotes[0].ytdPriceChangePercentage,
+                                            }}
+                                        />
 
-                                    <Text fontSize={20} marginTop={'30px'} marginBottom={'15px'}>
-                                        Market cap
-                                    </Text>
-                                    <TableContainer maxWidth={'100%'} maxW="100%">
-                                        <Table size="sm" variant='striped' colorScheme='gray'>
-                                            <Thead>
-                                                <Tr>
-                                                    <Th>Attribute</Th>
-                                                    <Th>Value</Th>
-                                                </Tr>
-                                            </Thead>
-                                            <Tbody>
-                                                <Tr>
-                                                    <Td>Market cap</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.marketCap).format('0.00a')}</Td>
-                                                </Tr>
-                                                <Tr>
-                                                    <Td>Fully diluted market cap</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.fullyDilluttedMarketCap).format('0.00a')}</Td>
-                                                </Tr>
-                                                <Tr>
-                                                    <Td>Market cap by supply</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.marketCapByTotalSupply).format('0.00a')}</Td>
-                                                </Tr>
-                                                {store.selected?.quotes[0]?.selfReportedMarketCap && store.selected?.quotes[0]?.selfReportedMarketCap !== "0" &&
-                                                    <Tr>
-                                                        <Td>Self reported market cap</Td>
-                                                        <Td>{numeral(store.selected?.quotes[0]?.selfReportedMarketCap).format('0.00a')}</Td>
-                                                    </Tr>
+                                        <CurrencyTable
+                                            title="Supply"
+                                            rows={[
+                                                {
+                                                    title: "Total supply",
+                                                    value: store.selected?.totalSupply,
+                                                    numeral: true
+                                                },
+                                                {
+                                                    title: "Circulating supply",
+                                                    value: store.selected?.circulatingSupply,
+                                                    numeral: true
                                                 }
-                                            </Tbody>
-                                        </Table>
-                                    </TableContainer>
+                                            ]} 
+                                        />
+                                    </SimpleGrid>
+                                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 1, lg: 2 }}>
+                                        <CurrencyTable
+                                            title="Market Cap"
+                                            rows={[
+                                                {
+                                                    title: "Market cap",
+                                                    value: store.selected?.quotes[0]?.marketCap,
+                                                    numeral: true
+                                                },
+                                                {
+                                                    title: "Fully diluted market cap",
+                                                    value: store.selected?.quotes[0]?.fullyDilluttedMarketCap,
+                                                    numeral: true
+                                                },
+                                                {
+                                                    title: "By supply",
+                                                    value: store.selected?.quotes[0]?.marketCapByTotalSupply,
+                                                    numeral: true
+                                                }
+                                            ]} 
+                                        />
 
-                                    <Text fontSize={20} marginTop={'30px'} marginBottom={'15px'}>
-                                        Volume
-                                    </Text>
-                                    <TableContainer maxWidth={'100%'} maxW="100%">
-                                        <Table size="sm" variant='striped' colorScheme='gray'>
-                                            <Thead>
-                                                <Tr>
-                                                    <Th>Attribute</Th>
-                                                    <Th>Value</Th>
-                                                </Tr>
-                                            </Thead>
-                                            <Tbody>
-                                                <Tr>
-                                                    <Td>24 hours</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.volume24h).format('0.00a')}</Td>
-                                                </Tr>
-                                                <Tr>
-                                                    <Td>7 days</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.volume7d).format('0.00a')}</Td>
-                                                </Tr>
-                                                <Tr>
-                                                    <Td>30 days</Td>
-                                                    <Td>{numeral(store.selected?.quotes[0]?.volume30d).format('0.00a')}</Td>
-                                                </Tr>
-                                            </Tbody>
-                                        </Table>
-                                    </TableContainer>
+                                        <CurrencyTable
+                                            title="Volume"
+                                            rows={[
+                                                {
+                                                    title: "24 hours",
+                                                    value: store.selected?.quotes[0]?.volume24h,
+                                                    numeral: true
+                                                },
+                                                {
+                                                    title: "7 days",
+                                                    value: store.selected?.quotes[0]?.volume7d,
+                                                    numeral: true
+                                                },
+                                                {
+                                                    title: "30 days",
+                                                    value: store.selected?.quotes[0]?.volume30d,
+                                                    numeral: true
+                                                }
+                                            ]} 
+                                        />
+                                    </SimpleGrid>
                                 </TabPanel>
                                 <TabPanel style={{ minHeight: '450px' }}>
                                     <Select 
