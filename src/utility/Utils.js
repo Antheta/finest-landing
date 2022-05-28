@@ -16,6 +16,11 @@ export const formatDateTime = datetime => {
   return moment(datetime).format('MMM D YYYY, HH:mm')
 }
 
+export const utcToLocal = datetime => {
+  const utc = moment.utc(datetime).toDate();
+  return moment(utc).local().format('YYYY-MM-DD HH:mm:ss');
+}
+
 export const errorsList = (resErrors) => {
   if (resErrors !== null) {
     if (isJson(resErrors)) {
@@ -64,3 +69,4 @@ export const isJson = (item) => {
 
   return false
 }
+

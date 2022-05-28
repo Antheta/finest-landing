@@ -36,7 +36,7 @@ import PercentageChange from '../../components/PercentageChange';
 
 import { AdvancedRealTimeChart, TechnicalAnalysis } from "react-ts-tradingview-widgets";
 
-import { formatDateTime } from '../../utility/Utils'
+import { formatDateTime, utcToLocal } from '../../utility/Utils'
 import { CheckIcon, Icon } from '@chakra-ui/icons';
 import { FcComboChart, FcInfo } from 'react-icons/fc';
 
@@ -183,7 +183,7 @@ const Currency = () => {
                         </chakra.h1>
                         {store.selected?.lastUpdated ?
                             <Text size={'sm'} margin={{ base: 2, lg: 0 }} textAlign={{ base: 'center', md: 'right' }} textColor={'lightgray'} alignSelf={"center"} fontSize={10}>
-                                Last updated: {formatDateTime(store.selected?.quotes[0]?.lastUpdated ? store.selected?.quotes[0]?.lastUpdated : store.selected?.lastUpdated)}
+                                Last updated: {formatDateTime(utcToLocal(store.selected?.quotes[0]?.lastUpdated ? store.selected?.quotes[0]?.lastUpdated : store.selected?.lastUpdated))}
                             </Text>
                         : null}
                     </SimpleGrid>
@@ -347,10 +347,10 @@ const Currency = () => {
                                         <option value={`USD`} defaultChecked={true}>U.S Dollar - {store.selected?.symbol + '/USD'}</option>
                                         <option value={`EUR`}>EURO - {store.selected?.symbol + '/EUR'}</option>
                                     </Select>
-                                    {/* <Charts 
+                                    <Charts 
                                         symbol={store.selected?.symbol} 
                                         fiat={fiat} 
-                                    /> */}
+                                    />
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
