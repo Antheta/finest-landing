@@ -320,11 +320,6 @@ const NAV_ITEMS = [
     {
         label: 'Gateway',
         href: '/gateway',
-    },
-    {
-        label: 'Connect',
-        href: '/connect',
-        mobile: true
     }
     // {
     //   label: 'Features',

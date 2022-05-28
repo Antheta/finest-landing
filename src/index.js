@@ -1,4 +1,4 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, useColorModeValue } from '@chakra-ui/react';
 import React, { StrictMode, useLayoutEffect } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
@@ -37,6 +37,13 @@ const SmoothScrollTop = ({children}) => {
   return children
 }
 
+const GradientBg = () => {
+  const color = useColorModeValue('dark', 'light')
+  return (
+    <div className={color === "light" ? `background-gradient` : `background-gradient-light`}></div>
+  )
+}
+
 root.render(
   <StrictMode>
     <ChakraProvider theme={theme} store={store}>
@@ -48,6 +55,7 @@ root.render(
               <Navbar />
               <Router />
               <Footer />
+              <GradientBg />
             </SmoothScrollTop>
           </BrowserRouter>
         </DAppProvider>

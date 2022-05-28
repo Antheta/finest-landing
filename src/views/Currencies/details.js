@@ -347,10 +347,10 @@ const Currency = () => {
                                         <option value={`USD`} defaultChecked={true}>U.S Dollar - {store.selected?.symbol + '/USD'}</option>
                                         <option value={`EUR`}>EURO - {store.selected?.symbol + '/EUR'}</option>
                                     </Select>
-                                    <Charts 
+                                    {/* <Charts 
                                         symbol={store.selected?.symbol} 
                                         fiat={fiat} 
-                                    />
+                                    /> */}
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
