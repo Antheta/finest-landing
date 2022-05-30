@@ -89,13 +89,13 @@ export default function SmallCentered() {
                     align={{ base: 'center', md: 'center' }}>
                     <Text>{moment().format('YYYY')} © Finest Protocol.</Text>
                     <Stack direction={'row'} spacing={6}>
-                        <SocialButton label={'Twitter'} href={'https://twitter.com/AnthetaApp'}>
+                        <SocialButton label={'Twitter'} href={'https://twitter.com/AnthetaApp'} target="_blank">
                             <FaTwitter />
                         </SocialButton>
-                        <SocialButton label={'Instagram'} href={'https://www.instagram.com/anthetacom/'}>
+                        <SocialButton label={'Instagram'} href={'https://www.instagram.com/anthetacom/'} target="_blank">
                             <FaInstagram />
                         </SocialButton>
-                        <SocialButton label={'Github'} href={'https://github.com/Antheta'}>
+                        <SocialButton label={'Github'} href={'https://github.com/Antheta'} target="_blank">
                             <FaGithub />
                         </SocialButton>
                     </Stack>

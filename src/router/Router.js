@@ -14,6 +14,7 @@ import Currency from "../views/Currencies/details"
 import Login from "../views/Account/login"
 import Account from "../views/Account"
 import Alerts from "../views/Account/alerts"
+import NewAlert from "../views/Account/new-alert"
 
 const Router = () => {
     return (
@@ -30,6 +31,7 @@ const Router = () => {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/account" element={<Account />} />
             <Route exact path="/alerts" element={<Alerts />} />
+            <Route exact path="/alerts/new" element={<NewAlert />} />
         </Routes>
     )
 }
