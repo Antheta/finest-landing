@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Alert, Box, Button, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react"
 import Metamask from "./wallets/metamask"
 
 import { useEthers, useEtherBalance } from "@usedapp/core"
 import { CopyIcon, ExternalLinkIcon } from "@chakra-ui/icons"
+import { signature } from "../../auth/metamask"
 
 const ModalOverlayBlur = () => (
     <ModalOverlay
@@ -13,15 +14,39 @@ const ModalOverlayBlur = () => (
 )
 
 const WalletModal = ({isOpen, handleModal}) => {
-    const {activateBrowserWallet, account } = useEthers();
+    const { activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
 
     const [loading, setLoading] = useState(false)
     const [selectedWallet, setSelectedWallet] = useState("")
+    const [hasWallet, setHasWallet] = useState(true)
 
+    // ** get signature
+    const handleSignature = () => {
+        signature()
+            .then((response) => {
+                console.log(response)
+                if (response.status === "OK") {
+                    handleConnectWallet()
+                }
+            }) 
+    }
+
+    // ** verify signature
+    const handleVerifySignature = () => {
+
+    }
+
+    // connect wallet
     function handleConnectWallet() {
         activateBrowserWallet();
     }
+
+    useEffect(() => {
+        if (account) {
+            setLoading(false)
+        }
+    }, [account])
 
     return (
         <>
@@ -31,6 +56,11 @@ const WalletModal = ({isOpen, handleModal}) => {
                     <ModalHeader>{account ? 'Account' : 'Connect a wallet'}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody mb={0} mt={2}>
+                        {!hasWallet ? (
+                            <Alert colorScheme="orange" mb={4} borderRadius="7">
+                                <Text>You don't have Metamask installed!</Text>
+                            </Alert>
+                        ) : null}
                         {account ? (
                             <Box border={'1px solid'} borderColor="gray" p={3} borderRadius={5}>
                                 <Text fontSize="sm">
@@ -56,8 +86,12 @@ const WalletModal = ({isOpen, handleModal}) => {
                                 isLoading={selectedWallet === "METAMASK" && loading ? true : false}
                                 onClick={() => {
                                     setSelectedWallet("METAMASK")
-                                    handleConnectWallet()
-                                    setLoading(true)
+                                    if (typeof window.ethereum !== 'undefined') {
+                                        handleSignature()
+                                        setLoading(true)
+                                    } else {
+                                        setHasWallet(false)
+                                    }
                                 }}
                             >
                                 <Text textAlign={'left'}>
